@@ -1,4 +1,6 @@
 credentials.json
+config.yml
+token.pickle
 
 *.ipynb
 __pycache__/
