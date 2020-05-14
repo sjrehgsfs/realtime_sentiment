@@ -5,3 +5,5 @@ token.pickle
 *.ipynb
 __pycache__/
 .ipynb_checkpoints/
+
+model/data

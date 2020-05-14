@@ -1,0 +1,1 @@
+from rnn.model.model import RnnClassifier
