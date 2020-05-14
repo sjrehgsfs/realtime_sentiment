@@ -10,8 +10,8 @@
     },
     "max_sequence_length": 300
   },
-  "train_data_path": "../data/train.jsonl",
-  "validation_data_path": "../data/test.jsonl",
+  "train_data_path": "models/data/debug.jsonl",
+  "validation_data_path": "models/data/debug.jsonl",
   "model": {
     "type": "rnn_clf",
     "text_field_embedder": {
