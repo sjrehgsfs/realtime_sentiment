@@ -46,7 +46,8 @@ class RnnClassifier(Model):
         seq2vec_encoder: Seq2VecEncoder,
         dropout: float = 0.,
         label_namespace: str = 'labels',
-        initializer: InitializerApplicator = InitializerApplicator()) -> None:
+        initializer: InitializerApplicator = InitializerApplicator(),
+        pretrained_path: str = None) -> None:
         super().__init__(vocab)
 
         self._text_field_embedder = text_field_embedder
@@ -64,6 +65,10 @@ class RnnClassifier(Model):
         self._loss = nn.CrossEntropyLoss()
 
         initializer(self)
+
+        if pretrained_path:
+            with open(pretrained_path, 'rb') as f:
+                self.load_state_dict(torch.load(f))
         
     def forward(self, tokens, label=None):
         embedded_text = self._text_field_embedder(tokens)
