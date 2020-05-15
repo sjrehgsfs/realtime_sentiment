@@ -37,7 +37,7 @@ local HDN = 128;
   },
   "iterator": {
     "type": "bucket",
-    "batch_size": 8,
+    "batch_size": 2,
     "sorting_keys": [["tokens", "num_tokens"]],
     "padding_noise": 1e-5
   },
@@ -55,7 +55,7 @@ local HDN = 128;
     "validation_metric": "-loss",
     "optimizer": {
       "type": "adam",
-      "lr": 5e-4,
+      "lr": 1e-4,
       "weight_decay": 0.001
     },
     "learning_rate_scheduler": {

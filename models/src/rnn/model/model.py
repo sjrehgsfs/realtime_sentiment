@@ -60,7 +60,7 @@ class RnnClassifier(Model):
             self._dropout = lambda x: x
 
         self._num_labels = vocab.get_vocab_size(namespace=label_namespace)
-        self._bn = nn.BatchNorm1d(self._classifier_input_dim)
+        self._ln = nn.LayerNorm(self._classifier_input_dim)
         self._classification_layer = nn.Linear(self._classifier_input_dim, self._num_labels)
         self._accuracy = CategoricalAccuracy()
         self._loss = nn.CrossEntropyLoss()
@@ -75,7 +75,7 @@ class RnnClassifier(Model):
         embedded_text = self._text_field_embedder(tokens)
         mask = get_text_field_mask(tokens).float()
         encoded_text = self._dropout(self._seq2vec_encoder(embedded_text, mask=mask))
-        encoded_text = self._bn(encoded_text)
+        encoded_text = self._ln(encoded_text)
         logits = self._classification_layer(encoded_text)
         probs = F.softmax(logits, dim=1)
         output_dict = {'logits': logits, 'probs': probs}
