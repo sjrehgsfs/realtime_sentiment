@@ -31,16 +31,15 @@ local HDN = 128;
       "type": "lstm",
       "bidirectional": true,
       "input_size": EMBD,
-      "hidden_size": HDN,
-      "num_layers": 10
+      "hidden_size": HDN
     },
     "dropout": 0.5
   },
   "iterator": {
     "type": "bucket",
-    "batch_size": 2,
+    "batch_size": 8,
     "sorting_keys": [["tokens", "num_tokens"]],
-    "padding_noise": 1e-3
+    "padding_noise": 1e-5
   },
 
   "trainer": {
