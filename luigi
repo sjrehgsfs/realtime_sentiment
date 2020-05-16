@@ -1,0 +1,20 @@
+import luigi
+import time
+
+
+class dyTask1(luigi.Task):
+    task_namespace = 'task'
+    
+    def output(self):
+        print("Task1: output")
+        return luigi.LocalTarget("Desktop/task6.txt")
+
+    def run(self):
+        print("Task1: run")
+        with open('Desktop/test.txt') as f:
+            s = f.read()
+        with self.output().open('w') as g:
+            g.write(s)
+
+if __name__ == '__main__':
+    luigi.run(['task.dyTask1', '--workers', '1', '--local-scheduler'])
