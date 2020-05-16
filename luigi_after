@@ -1,0 +1,20 @@
+import pandas as pd
+
+class dyTask2(luigi.Task):
+    task_namespace = 'task'
+
+    def output(self):
+        print("Task2: output")
+        return luigi.LocalTarget("newtask1.txt")
+
+
+    def run(self):
+        print("Task2: run")
+        with open('Desktop/task6.txt') as f:
+            s = f.read()
+        with self.output().open('w') as g:
+            g.write(s)
+
+
+if __name__ == '__main__':
+    luigi.run(['task.dyTask2', '--workers', '1', '--local-scheduler'])
